@@ -1,0 +1,390 @@
+% Customizable fields and text areas start with % >> below.
+% Lines starting with the comment character (%) are normally removed before release outside the collaboration, but not those comments ending lines
+
+% svn info. These are modified by svn at checkout time.
+% The last version of these macros found before the maketitle will be the one on the front page,
+% so only the main file is tracked.
+% Do not edit by hand!
+\RCS$Revision: 201698 $
+\RCS$HeadURL: svn+ssh://svn.cern.ch/reps/tdr2/notes/AN-13-245/trunk/AN-13-245.tex $
+\RCS$Id: AN-13-245.tex 201698 2013-08-09 10:58:19Z psilva $
+%%%%%%%%%%%%% local definitions %%%%%%%%%%%%%%%%%%%%%
+% This allows for switching between one column and two column (cms@external) layouts
+% The widths should  be modified for your particular figures. You'll need additional copies if you have more than one standard figure size.
+\newlength\cmsFigWidth
+\ifthenelse{\boolean{cms@external}}{\setlength\cmsFigWidth{0.85\columnwidth}}{\setlength\cmsFigWidth{0.4\textwidth}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsLeft}{top}}{\providecommand{\cmsLeft}{left}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsRight}{bottom}}{\providecommand{\cmsRight}{right}}
+\providecommand{\MET}{{$E_{\rm T}^{miss}$}\xspace}
+\providecommand{\pt}{{$p_{\rm T}$}\xspace}
+\providecommand{\nch}{{$N_{\rm ch}$}}
+\providecommand{\chflux}{{$\sum p_{\rm T}^{\rm ch}$}}
+\providecommand{\avgflux}{{$<p_{\rm T}^{\rm ch}>$}}
+
+%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
+\cmsNoteHeader{AN-13-svtx} % This is over-written in the CMS environment: useful as preprint no. for export versions
+% >> Title: please make sure that the non-TeX equivalent is in PDFTitle below
+\title{A top mass measurement using tracker-only variables}
+
+% >> Authors
+%Author is always "The CMS Collaboration" for PAS and papers, so author, etc, below will be ignored in those cases
+%For multiple affiliations, create an address entry for the combination
+%To mark authors as primary, use the \author* form
+\author{
+B. Stieger${1}$, P. Silva$^{1,3}$, M. Mulders$^{1}$
+\\~ 
+\\$^1$ CERN,Geneva, Switzerland
+\\$^3$ LIP, Lisbon, Portugal
+}
+% >> Date
+% The date is in yyyy/mm/dd format. Today has been
+% redefined to match, but if the date needs to be fixed, please write it in this fashion.
+% For papers and PAS, \today is taken as the date the head file (this one) was last modified according to svn: see the RCS Id string above.
+% For the final version it is best to "touch" the head file to make sure it has the latest date.
+\date{\today}
+
+% >> Abstract
+% Abstract processing:
+% 1. **DO NOT use \include or \input** to include the abstract: our abstract extractor will not search through other files than this one.
+% 2. **DO NOT use %**                  to comment out sections of the abstract: the extractor will still grab those lines (and they won't be comments any longer!).
+% 3. For PASs: **DO NOT use tex macros**         in the abstract: CDS MathJax processor used on the abstract doesn't understand them _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
+\abstract{
+We present a novel technique for measuring the top quark mass ($m_{\rm t}$) using tracker-only variables.
+The 8 TeV proton-proton collision data is used to select \ttbar events in the single lepton and dilepton final states. By reconstructing secondary vertices inside the selected jets and computing the invariant mass of the secondary vertex + isolated lepton systems we build a variable which is sensitive to $m_{\rm t}$
+and which is expected to be robust to the main systematic uncertainties affecting the $m_{\rm t}$ measurement. In order to control the main systematic, pertaining the modelling of the b quark fragmentation and hadronization, we study charmed mesons reconstructed inside jets in \ttbar events.
+}
+
+% >> PDF Metadata
+% Do not comment out the following hypersetup lines (metadata). They will disappear in NODRAFT mode and are needed by CDS.
+% Also: make sure that the values of the metadata items are sensible and are in plain text:
+% (1) no TeX! -- for \sqrt{s} use sqrt(s) -- this will show with extra quote marks in the draft version but is okay).
+% (2) no %.
+% (3) No curly braces {}.
+\hypersetup{%
+pdfauthor={Benjamin Stieger, Pedro Silva, Martijn Mulders},%
+pdftitle={A top mass measurement using tracker-only variables},%
+pdfsubject={CMS},%
+pdfkeywords={CMS, top, top mass, tracking}}
+
+\maketitle %maketitle comes after all the front information has been supplied
+% >> Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% **DO NOT REMOVE THE BIBLIOGRAPHY** which is located before the appendix.
+%% You can take the text between here and the bibiliography as an example which you should replace with the actual text of your document.
+%% If you include other TeX files, be sure to use "\input{filename}" rather than "\input filename".
+%% The latter works for you, but our parser looks for the braces and will break when uploading the document.
+%%%%%%%%%%%%%%%
+
+
+\begin{small}
+\tableofcontents
+\end{small}
+
+
+%
+%
+%
+\clearpage
+\section{Introduction}
+\label{sec:intro}
+
+
+
+%
+%
+%
+\section{Datasets and selection}
+\label{sec:datasetsandselection}
+
+The analysis is performed using CMSSW\_5\_3\_15.
+
+%%%
+%%%
+%%%
+\subsection{Data analysed}
+\label{subsec:data}
+
+Collision data are analyzed using the FT\_53\_V21\_AN4 global tag while simulation samples
+are processed resorting to the START53\_V23.
+Data corresponds to the so-called ``Jan22 ReReco'' while
+Monte-Carlo (MC) samples correspond to the official CMS Summer12\_DR53X production.
+
+We use double lepton primary datasets for the analysis as listed in Table~\ref{tab:datasamples}. 
+Data are pre-selected for ``good" luminosity sections using the 
+{\small Cert\_190456-208686\_8TeV\_22Jan2013ReReco\_Collisions12\_JSON.txt}
+file which is centrally provided.
+
+\begin{table}[htp]
+\centering
+\caption{
+Datasets used for analysis.
+The primary datasets (PDs) correspond to DoubleElectron, DoubleMu, DoubleMuParked, MuEG,
+SingleElectron and SingleMu.
+The integrated luminosity and the run-ranges are shown for each data period.
+}
+\label{tab:datasamples}
+\begin{tabular}{lll} 
+\hline
+Dataset                                & $\int \mathcal{L}$ (pb$^{-1}$)  & Run range \\
+\hline\hline
+{\small /PD/Run2012A-22Jan2013-v1/AOD} &  881 & {\small 190645-193621} \\
+{\small /PD/Run2012B-22Jan2013-v1/AOD} & 4425 & {\small 193834-196531} \\
+{\small /PD/Run2012C-22Jan2013-v1/AOD} & 7123 & {\small 198049-203742} \\
+{\small /PD/Run2012D-22Jan2013-v1/AOD} & 7306 & {\small 203777-208686} \\
+\hline
+{\bf Total}   & {\bf 19736} & \\
+\hline
+\end{tabular}
+\end{table}
+
+
+%%%
+%%%
+%%%
+\subsection{Simulation samples}
+\label{subsec:sim}
+
+The MC samples for various background and signal processes relevant to this analysis
+are listed in Table \ref{tab:mcsamples} along with the respective
+cross-sections.
+For the purpose of evaluating systematic uncertainties dedicated
+samples are used. These are listed in Table~\ref{tab:mcsystsamples}.
+The processes have been normalized to the NLO cross sections values listed in~\cite{twiki:STDMODELXSEC8TeV}
+and the \ttbar cross section has been normalized to the NNLO+NNLL
+computation from~\cite{Czakon:2013goa}.
+Theoretical uncertainties (QCD scales and PDFs) are taken into account
+for dibosons~\cite{Campbell:2011bn}, single top~\cite{Kidonakis:2012eq} and \ttbar~\cite{Czakon:2013goa}.
+
+All samples are generated using the \MADGRAPH~\cite{MADGRAPH}, \PYTHIA~\cite{Sjostrand:2006za} 
+or \POWHEG~\cite{Alioli:2010xd}
+generators and a full simulation of the CMS detector based on Geant4~\cite{Agostinelli:2002hh}.
+ 
+\begin{table}[htp]
+\caption{List of the SM dilepton MC samples used in the comparison with 8~\TeV data.
+For the different processes (signal and background) considered the expected cross sections are quoted.
+S12\_S53 is used as an abbreviation for
+Summer12\_DR53X-PU\_S10\_START53\_{V7A,V19}.
+Samples marked with $\dagger$ are pre-filtered in the analysis for a
+specific decay, extra parton multiplicity, etc.
+}
+\label{tab:mcsamples}
+\begin{center}
+\hspace*{-1cm}
+\begin{tabular}{lll} 
+\hline
+Process                                & Dataset                                & $\sigma\cdot BR\cdot k$ (pb) \\
+\hline\hline
+\multirow{5}{*}{$W\rightarrow\ell\nu$}        
+& {\small /WJetsToLNu\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_S53-v1 $\dagger$} &\multirow{5}{*}{36257}\\
+& {\small /W1JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
+& {\small /W2JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
+& {\small /W3JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
+& {\small /W4JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\\hline
+\multirow{5}{*}{$Z\rightarrow\ell\ell$}       
+& {\small
+  /DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_S53-v1 $\dagger$} & \multirow{5}{*}{3504} \\
+& {\small /DY1JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
+& {\small /DY2JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
+& {\small /DY3JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
+& {\small /DY4JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\\hline
+\ttbar dileptons               & {\small  /TTJets\_FullLeptMGDecays\_8TeV-madgraph/S12\_S53-v2}                              & 26.1\\\hline
+other \ttbar                   & {\small  /TTJets\_MassiveBinDECAY\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 $\dagger$}  & 245.8\\\hline
+\ttbar+V                       & {\small /TTWJets\_8TeV-madgraph/S12\_S53-v1}                                                & 0.232\\
+                               & {\small /TTZJets\_8TeV-madgraph\_v2/S12\_S53-v1}                                            & 0.208\\\hline
+\multirow{6}{*}{Single top}    & {\small /Tbar\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)} & 11.2\\
+                               & {\small /T\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}          & 11.2\\
+                               & {\small /Tbar\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)}     & 55.5\\
+                               & {\small /T\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}              & 30.0 \\
+                               & {\small /Tbar\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)}     & 3.89 \\
+                               & {\small /T\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}              & 1.76 \\\hline
+\multirow{3}{*}{Dibosons (VV)} & {\small /WZJetsTo3LNu\_TuneZ2\_8TeV-madgraph-tauola/S12\_S53-v1}                      & 1.057\\
+                               & {\small /WWJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}                 & 5.71\\
+                               & {\small /ZZJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v3}                 & 0.3198 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[htp]
+\caption{List of the \ttbar systematic MC samples used in the analysis.
+The abbreviations are similar to the ones used for
+Table~\ref{tab:mcsamples}.
+ME-PS (UE) stands for matrix-element to parton-shower threshold
+(underlying event).
+}
+\label{tab:mcsystsamples}
+\begin{center}
+\hspace*{-0.5cm}
+\begin{tabular}{ll} 
+\hline
+Systematic & Dataset  \\
+\hline\hline
+\multirow{2}{*}{$Q^2=\mu_R^2=\mu_F^2$}        
+& {\small /TTJets\_scaledown\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+& {\small /TTJets\_scaleup\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 }\\\hline
+\multirow{2}{*}{ME-PS}        
+& {\small /TTJets\_matchingdown\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+& {\small /TTJets\_matchingup\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 }\\\hline
+\multirow{4}{*}{UE,CR}        
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11\_8TeV-madgraph-tauola/S12\_S53-v1 }\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11mpiHi\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11TeV\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11noCR\_8TeV-madgraph-tauola/S12\_S53-v1}\\\hline
+\multirow{2}{*}{Hadronization, Signal}&
+{\small /TT\_CT10\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v2}\\
+&{\small /TT\_CT10\_AUET2\_8TeV-powheg-tauola/S12\_S53-v1}\\
+\hline
+\multirow{2}{*}{Mass} 
+& {\small /TTJets\_mass169\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+& {\small /TTJets\_mass175\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+%%
+%%
+%%
+\subsection{Corrections applied to the simulation}
+\label{subsec:simcorrections}
+
+The pileup distribution in the MC is re-weighted to match the one
+estimated in data.
+After applying the re-weighting procedure the vertex multiplicity
+distribution is used to evaluate the expected level of agreement.
+Figure~\ref{fig:vtxmult} shows the resulting vertex multiplicity
+distribution observed after the selection of two good leptons in the
+event.
+The lepton selection applied will detailed below.
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/ll_nvertices}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/l_nvertices}}
+\caption{ 
+Vertex multiplicity distribution in the 2012 dataset for the (a) dilepton 
+and (b) single lepton channels compared to the simulation  after the reweighing procedure.
+MC is normalized by the cross section and the integrated luminosity.
+}
+\label{fig:vtxmult}
+\end{figure}
+
+
+%%%
+%%%
+%%%
+\subsection{Event selection}
+\label{subsec:evsel}
+
+The event selection is briefly summarized in this section.
+Table~\ref{tab:datatriggers} reports the triggers used in the
+analysis.
+The dilepton ($ee$, $\mu\mu$ or $e\mu$) and the single lepton ($e$, $\mu$) channels
+are determined by both
+the trigger and the offline reconstructed final state. Double counting
+of the events is removed by giving requiring the trigger type to be matched
+to the final state being observed
+and giving priority to $e\mu$ over $\mu\mu$ over $ee$ events over $\mu$ over $e$, sequentially. 
+
+\begin{table}[!htp]
+\centering
+\caption{
+Triggers used for the analysis. If more than one trigger is listed per
+final state, a logical OR is used to acquire the data.
+}
+\label{tab:datatriggers}
+\begin{tabular}{ll} \hline
+ Dataset          & Trigger paths \\
+\hline\hline
+$ee$ & {\small Ele17\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL\_Ele8\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL }\\
+\hline
+\multirow{2}{*}{$\mu\mu$} & {\small Mu17\_Mu8}\\
+                          & {\small Mu17\_TkMu8}\\
+\hline
+\multirow{2}{*}{$e\mu$}   & {\small Mu8\_Ele17\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL} \\
+                          & {\small Mu17\_Ele8\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL} \\
+\hline
+$e$ & {\small } \\
+$\mu$ & {\small } \\
+\end{tabular}
+\end{table}
+
+The offline selection is as follows:
+
+\begin{itemize}
+
+\item at least two op. charged leptons with \pt$>$20\GeV,
+  $\lvert\eta\rvert<$2.4 and $M_{\ell\ell}>$12\GeV. Electron
+  identification is based on a multivariate discriminator and we
+  require it to be $>$0.5. For muons we make use of the Tight
+  identification criteria. PF-based isolation is used in both
+  cases. Electrons are required to have a relative isolation $<$0.15
+  corrected using an effective isolation area and the event-by-event
+  estimate of the energy density flow due to pileup and underlying
+  event, \ie $\rho$. Muons are required to have a relative isolation
+  $<$0.12 corrected using tracks which point to pileup vertices in the
+  event.
+
+\item at least two AK5 PF-reconstructed jets with charged hadron
+  subtraction corrections with \pt$>$30\GeV and
+  $\lvert\eta\rvert<$2.5. The loose PF-jet id is applied. Jet energy
+  corrections are applied. For the simulated samples we smear further
+  the jet energy resolution. The smearing procedure is described in
+  more detail in~\cite{twiki:JER}.
+
+\item for the same-flavor channels we require further \MET$>$40\GeV
+  and $\lvert M_{\ell\ell}-M_Z\rvert<$15\GeV. The missing transverse
+  energy is computed from the absolute value of the \pt balance of all
+  PF candidates.
+
+\end{itemize}
+
+
+The trigger and lepton selection efficiencies are determined from data
+using a tag and probe method. The scale factor, with respect to the
+efficiencies expected from simulation, is then used to re-weigh the simulated
+events with two prompt leptons.
+The Muon and EGamma POG recommended values are used~\cite{twiki:EGeff,twiki:MUeff}.
+
+
+%%
+%%
+%%
+\section{Background control}
+\label{sec:bckgctrl}
+
+%%
+%%
+%%
+\section{Event yields and control distributions}
+\label{sec:evyields}
+
+%
+%
+%
+\section{Truth and Lies about Beauty and Charm: using top quark pair events as a spectroscope to
+control the modelling of fragmentation and hadronization of $\cPqb$ jets}
+\label{sec:truthlies}
+
+%
+%
+%
+\section{Measuring the top quark mass using tracks and vertices}
+\label{sec:mtoptkvtx}
+
+
+
+\section{Summary}
+\label{sec:summary}
+
+
+
+
+\clearpage
+\bibliography{auto_generated}   % will be created by the tdr script.
+
+
+%%% DO NOT ADD \end{document}!
+
