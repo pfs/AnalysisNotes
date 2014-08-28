@@ -15,11 +15,10 @@
 \ifthenelse{\boolean{cms@external}}{\setlength\cmsFigWidth{0.85\columnwidth}}{\setlength\cmsFigWidth{0.4\textwidth}}
 \ifthenelse{\boolean{cms@external}}{\providecommand{\cmsLeft}{top}}{\providecommand{\cmsLeft}{left}}
 \ifthenelse{\boolean{cms@external}}{\providecommand{\cmsRight}{bottom}}{\providecommand{\cmsRight}{right}}
-\providecommand{\MET}{{$E_{\rm T}^{miss}$}\xspace}
-\providecommand{\pt}{{$p_{\rm T}$}\xspace}
-\providecommand{\nch}{{$N_{\rm ch}$}}
-\providecommand{\chflux}{{$\sum p_{\rm T}^{\rm ch}$}}
-\providecommand{\avgflux}{{$<p_{\rm T}^{\rm ch}>$}}
+\providecommand{\MET}{$E_{\rm T}^{miss}$}
+\providecommand{\pt}{$p_{\rm T}$}
+\providecommand{\pz}{$p_{\rm z}$}
+\providecommand{\ptrel}{$p_{\rm T}^{\rm rel}$}
 
 %%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
 \cmsNoteHeader{AN-13-svtx} % This is over-written in the CMS environment: useful as preprint no. for export versions
@@ -88,7 +87,7 @@ pdfkeywords={CMS, top, top mass, tracking}}
 \section{Introduction}
 \label{sec:intro}
 
-
+Why is this analysis relevant?
 
 %
 %
@@ -162,7 +161,7 @@ generators and a full simulation of the CMS detector based on Geant4~\cite{Agost
 \begin{table}[htp]
 \caption{List of the SM dilepton MC samples used in the comparison with 8~\TeV data.
 For the different processes (signal and background) considered the expected cross sections are quoted.
-S12\_S53 is used as an abbreviation for
+S12\_53 is used as an abbreviation for
 Summer12\_DR53X-PU\_S10\_START53\_{V7A,V19}.
 Samples marked with $\dagger$ are pre-filtered in the analysis for a
 specific decay, extra parton multiplicity, etc.
@@ -175,31 +174,30 @@ specific decay, extra parton multiplicity, etc.
 Process                                & Dataset                                & $\sigma\cdot BR\cdot k$ (pb) \\
 \hline\hline
 \multirow{5}{*}{$W\rightarrow\ell\nu$}        
-& {\small /WJetsToLNu\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_S53-v1 $\dagger$} &\multirow{5}{*}{36257}\\
-& {\small /W1JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
-& {\small /W2JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
-& {\small /W3JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\
-& {\small /W4JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1} & \\\hline
+& {\small /WJetsToLNu\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_53-v1 $\dagger$} &\multirow{5}{*}{36257}\\
+& {\small /W1JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1} & \\
+& {\small /W2JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1} & \\
+& {\small /W3JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1} & \\
+& {\small /W4JetsToLNu\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1} & \\\hline
 \multirow{5}{*}{$Z\rightarrow\ell\ell$}       
 & {\small
-  /DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_S53-v1 $\dagger$} & \multirow{5}{*}{3504} \\
-& {\small /DY1JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
-& {\small /DY2JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
-& {\small /DY3JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\
-& {\small /DY4JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_S53-v1}& \\\hline
-\ttbar dileptons               & {\small  /TTJets\_FullLeptMGDecays\_8TeV-madgraph/S12\_S53-v2}                              & 26.1\\\hline
-other \ttbar                   & {\small  /TTJets\_MassiveBinDECAY\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 $\dagger$}  & 245.8\\\hline
-\ttbar+V                       & {\small /TTWJets\_8TeV-madgraph/S12\_S53-v1}                                                & 0.232\\
-                               & {\small /TTZJets\_8TeV-madgraph\_v2/S12\_S53-v1}                                            & 0.208\\\hline
-\multirow{6}{*}{Single top}    & {\small /Tbar\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)} & 11.2\\
-                               & {\small /T\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}          & 11.2\\
-                               & {\small /Tbar\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)}     & 55.5\\
-                               & {\small /T\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}              & 30.0 \\
-                               & {\small /Tbar\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($\bar{t}$)}     & 3.89 \\
-                               & {\small /T\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v1 ($t$)}              & 1.76 \\\hline
-\multirow{3}{*}{Dibosons (VV)} & {\small /WZJetsTo3LNu\_TuneZ2\_8TeV-madgraph-tauola/S12\_S53-v1}                      & 1.057\\
-                               & {\small /WWJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}                 & 5.71\\
-                               & {\small /ZZJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v3}                 & 0.3198 \\
+  /DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/S12\_53-v1 $\dagger$} & \multirow{5}{*}{3504} \\
+& {\small /DY1JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1}& \\
+& {\small /DY2JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1}& \\
+& {\small /DY3JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1}& \\
+& {\small /DY4JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph/S12\_53-v1}& \\\hline
+\ttbar  & {\small  /TTJets\_MSDecays\_central\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53X-v1 & 265\\\hline
+\ttbar+V                       & {\small /TTWJets\_8TeV-madgraph/S12\_53-v1}                                      & 0.232\\
+                               & {\small /TTZJets\_8TeV-madgraph\_v2/S12\_53-v1}                                  & 0.208\\\hline
+\multirow{6}{*}{Single top}    & {\small /Tbar\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($\bar{t}$)} & 11.2\\
+                               & {\small /T\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($t$)}          & 11.2\\
+                               & {\small /Tbar\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($\bar{t}$)}     & 55.5\\
+                               & {\small /T\_t-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($t$)}              & 30.0 \\
+                               & {\small /Tbar\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($\bar{t}$)}     & 3.89 \\
+                               & {\small /T\_s-channel\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v1 ($t$)}              & 1.76 \\\hline
+\multirow{3}{*}{Dibosons (VV)} & {\small /WZJetsTo3LNu\_TuneZ2\_8TeV-madgraph-tauola/S12\_53-v1}                      & 1.057\\
+                               & {\small /WWJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}                 & 5.71\\
+                               & {\small /ZZJetsTo2L2Nu\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v3}                 & 0.3198 \\
 \hline
 \end{tabular}
 \end{center}
@@ -220,23 +218,31 @@ ME-PS (UE) stands for matrix-element to parton-shower threshold
 Systematic & Dataset  \\
 \hline\hline
 \multirow{2}{*}{$Q^2=\mu_R^2=\mu_F^2$}        
-& {\small /TTJets\_scaledown\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
-& {\small /TTJets\_scaleup\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 }\\\hline
+& {\small /TTJets\_MSDecays\_scaledown\_TuneZ2star\_8TeV-madgraph-tauola//S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_scaleup\_TuneZ2star\_8TeV-madgraph-tauola//S12\_53-v1 }\\\hline
 \multirow{2}{*}{ME-PS}        
-& {\small /TTJets\_matchingdown\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
-& {\small /TTJets\_matchingup\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1 }\\\hline
-\multirow{4}{*}{UE,CR}        
-& {\small /TTJets\_FullLeptMGDecays\_TuneP11\_8TeV-madgraph-tauola/S12\_S53-v1 }\\
-& {\small /TTJets\_FullLeptMGDecays\_TuneP11mpiHi\_8TeV-madgraph-tauola/S12\_S53-v1}\\
-& {\small /TTJets\_FullLeptMGDecays\_TuneP11TeV\_8TeV-madgraph-tauola/S12\_S53-v1}\\
-& {\small /TTJets\_FullLeptMGDecays\_TuneP11noCR\_8TeV-madgraph-tauola/S12\_S53-v1}\\\hline
+& {\small /TTJets\_MSDecays\_matchingdown\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_matchingup\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1 }\\\hline
+\multirow{8}{*}{UE,CR}        
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11\_8TeV-madgraph-tauola/S12\_53-v1 }\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11mpiHi\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11TeV\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_FullLeptMGDecays\_TuneP11noCR\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_SemiLeptMGDecays\_TuneP11\_8TeV-madgraph-tauola/S12\_53-v1 }\\
+& {\small /TTJets\_SemiLeptMGDecays\_TuneP11mpiHi\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_SemiLeptMGDecays\_TuneP11TeV\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_SemiLeptMGDecays\_TuneP11noCR\_8TeV-madgraph-tauola/S12\_53-v1}\\\hline
 \multirow{2}{*}{Hadronization, Signal}&
-{\small /TT\_CT10\_TuneZ2star\_8TeV-powheg-tauola/S12\_S53-v2}\\
-&{\small /TT\_CT10\_AUET2\_8TeV-powheg-tauola/S12\_S53-v1}\\
+{\small /TT\_CT10\_TuneZ2star\_8TeV-powheg-tauola/S12\_53-v2}\\
+&{\small /TT\_CT10\_AUET2\_8TeV-powheg-tauola/S12\_53-v1}\\
 \hline
-\multirow{2}{*}{Mass} 
-& {\small /TTJets\_mass169\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
-& {\small /TTJets\_mass175\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_S53-v1}\\
+\multirow{6}{*}{Mass} 
+& {\small /TTJets\_MSDecays\_mass166\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_mass169\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_mass171\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_mass173\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_mass175\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
+& {\small /TTJets\_MSDecays\_mass178\_5\_TuneZ2star\_8TeV-madgraph-tauola/S12\_53-v1}\\
 \hline
 \end{tabular}
 \end{center}
@@ -306,8 +312,10 @@ $ee$ & {\small Ele17\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL\_Ele8\_CaloIdT\_Calo
 \multirow{2}{*}{$e\mu$}   & {\small Mu8\_Ele17\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL} \\
                           & {\small Mu17\_Ele8\_CaloIdT\_CaloIsoVL\_TrkIdVL\_TrkIsoVL} \\
 \hline
-$e$ & {\small } \\
-$\mu$ & {\small } \\
+$e$ & {\small Ele27\_WP80} \\
+\hline
+$\mu$ & {\small IsoMu24\_eta2p1} \\
+\hline
 \end{tabular}
 \end{table}
 
@@ -315,9 +323,8 @@ The offline selection is as follows:
 
 \begin{itemize}
 
-\item at least two op. charged leptons with \pt$>$20\GeV,
-  $\lvert\eta\rvert<$2.4 and $M_{\ell\ell}>$12\GeV. Electron
-  identification is based on a multivariate discriminator and we
+\item at least one charged lepton is required in the event.
+  Electron identification is based on a multivariate discriminator and we
   require it to be $>$0.5. For muons we make use of the Tight
   identification criteria. PF-based isolation is used in both
   cases. Electrons are required to have a relative isolation $<$0.15
@@ -326,18 +333,21 @@ The offline selection is as follows:
   event, \ie $\rho$. Muons are required to have a relative isolation
   $<$0.12 corrected using tracks which point to pileup vertices in the
   event.
+  For single lepton events we require one lepton with \pt$>$30\GeV and $\lvert\eta\rvert<$2.5
+  in the e channel or \pt$>$26\GeV and $\lvert\eta\rvert<$2.1 in the $\mu$ channel.
+  For dilepton events we require two leptons with \pt$>$20\GeV, $\lvert\eta\rvert<$2.5
+  and $M_{\ell\ell}>$12\GeV. In the case of ee or $\mu\mu$ channels, 
+  events with $\vert M_{\ell\ell}-M_\cPZ\vert<15\GeV$ are rejected.
 
-\item at least two AK5 PF-reconstructed jets with charged hadron
-  subtraction corrections with \pt$>$30\GeV and
-  $\lvert\eta\rvert<$2.5. The loose PF-jet id is applied. Jet energy
-  corrections are applied. For the simulated samples we smear further
+\item at least two (four) AK5 PF-reconstructed jets with charged hadron
+  subtraction corrections and with \pt$>$20\GeV and $\lvert\eta\rvert<$2.5
+  are required in dilepton (single lepton) events. The loose PF-jet id is applied
+  as well as jet energy corrections. For the simulated samples we smear further
   the jet energy resolution. The smearing procedure is described in
   more detail in~\cite{twiki:JER}.
 
-\item for the same-flavor channels we require further \MET$>$40\GeV
-  and $\lvert M_{\ell\ell}-M_Z\rvert<$15\GeV. The missing transverse
-  energy is computed from the absolute value of the \pt balance of all
-  PF candidates.
+\item for same-flavour dilepton events we require further that \MET$>$40\GeV
+  The missing transverse energy is computed from the absolute value of the \pt balance of all PF candidates.
 
 \end{itemize}
 
@@ -355,18 +365,287 @@ The Muon and EGamma POG recommended values are used~\cite{twiki:EGeff,twiki:MUef
 \section{Background control}
 \label{sec:bckgctrl}
 
+Coming soon.
+
 %%
 %%
 %%
 \section{Event yields and control distributions}
 \label{sec:evyields}
 
-%
-%
-%
+Coming soon.
+
+%%
+%%
+%%
 \section{Truth and Lies about Beauty and Charm: using top quark pair events as a spectroscope to
 control the modelling of fragmentation and hadronization of $\cPqb$ jets}
 \label{sec:truthlies}
+
+We make use of the charged particle flow candidates associated to the two jets which rank highest in the CSV discriminator.
+Particle flow classifies the charged candidates as electrons, muons or charged hadrons.
+For the latter case we assign a mass hypothesis ($\pi^\pm$ or K$^\pm$) depending on the combination being tested.
+Three charmed mesons are considered for our study:
+
+\begin{description}
+\item[$D^0$ candidates] - are chosen due to the large branching ratio, \ie 
+${\rm BR}(B^+\rightarrow D^0+X)\times{\rm BR}(D^0\rightarrow K^+\pi^-)\approx 79\times3.9\%=3.1\%$~\cite{Beringer:1900zz}.
+We reconstruct $D^0$ candidates assuming the $K^+\pi^-$ decay channel and using all the permutations
+made of up to 5 leading-\pt charged hadrons. 
+The purity of this selection is enhanced by finding a lepton with the same charge of the 
+kaon assignment in a given permutation;
+\item[$D^\pm$ candidates] - are chosen as the second most probable charmed mesons to be found after a B-hadron decay,
+${\rm BR}(B^+\rightarrow D^++X)\times{\rm BR}(D^+\rightarrow K^+2\pi^-)\approx 9.9\times9.1\%=0.9\%$~\cite{Beringer:1900zz}.
+\item[$J/\psi$ candidates] - are chosen owing to the expected high purity selection, stemming from the 
+distinct final state containing two op. sign, same flavour leptons (e or $\mu$).
+The reconstruction requires two leptons associated to the jet, in the conditions mentioned before;
+\end{description} 
+
+Figure~\ref{fig:charmedresonances} compares the data to simulation-based expectations for the invariant mass distribution
+of the different charmed meson candidates. The agreement is overall good in the production rate and shape of the distributions.
+The major discrepancies are observed in a slight shift of the $J/\psi\rightarrow \mu^+\mu^-$ spectrum in data
+and an overall 20\% excess in data in the region of the $D^\pm$ peak.
+
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0Incl3Trk.png}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0lep.png}}\\
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/DpmZO.png}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/JPsi.png}}
+\caption{ 
+Invariant mass distributions of charmed meson candidates in \ttbar events:
+(a) $D^0$, (b) $D^0$ with soft lepton tag, (c) $D^\pm$ and (d) $J/\psi$.
+The expectations for the different processes are shown stacked and the data is shown as marker points.
+The bottom panels show the ratio of data to the total expectations.
+}
+\label{fig:charmedresonances}
+\end{figure}
+
+In order to characterize the kinematic properties of these charmed resonances we make use of
+the sPlot technique~\cite{2005NIMPA.555..356P}.
+The invariant mass distributions are fitted to determine the contribution from signal and background.
+In the fit both the parameters of the distributions as well as the yields of the signal and background  are determined.
+The result is then used to unfold the contributions of the different sources to the distribution of a given variable
+without using any a priori knowledge on it.
+By applying this technique on both data and MC we are able to compare the results with different models.
+Notice that the variable being unfolded must be, in first approximation,
+uncorrelated with the mass distribution, otherwise extra correction factors would need to be applied.
+Also notice, that to obtain a fully unfolded distribution which could be compared at generator level,
+e.g. with the \textsc{rivet} framework~\cite{Buckley:2010ar}, 
+an extra step would be needed of deriving possible
+extra corrections between the unfolded sPlot distribution and the truth distribution in simulation.
+For our purposes having a consistent setup in data and MC is sufficient. 
+Moreover we don't expect these corrections
+to be significant given we'll be using mostly tracker-reconstructed quantities. 
+
+The signal is modeled with a Crystal-Ball function and the background with an exponential function.
+An extended unbinned likelihood fit is used to extract the signal and background yields 
+and fix the parameters of the probability distribution functions.
+The fit is implemented in \textsc{roofit}~\cite{2003physics...6116V}.
+Table~\ref{tab:charmfit} summarizes the average mass, 
+width and the signal-to-background (S/B) extracted in data and
+in simulation, for the different resonances.
+
+
+\begin{table}[!htp]
+\centering
+\caption{Average mass and width obtained from the fit to the invariant mass distributions 
+in data and different simulations. The signal-to-background ratio obtained (S/B) is also shown.
+The uncertainties are of statistical nature.
+}
+\label{tab:charmfit}
+\begin{tabular}{lllccc} \hline
+Candidate & \multicolumn{2}{l}{Dataset} & Mass (\GeV) & Width (\GeV) & S/B \\
+\hline\hline
+\multirow{5}{*}{$D^0$} 
+& \multicolumn{2}{l}{Data} & 1.8636$\pm$0.0009 & 0.020$\pm$0.001 & 0.114$\pm$0.006\\ 
+\cline{2-6}
+& \multirow{4}{*}{MC} & MG+PY+Z2$^*$ & 1.866$\pm$0.001   & 0.019$\pm$0.002   & 0.115$\pm$0.011\\ 
+&                     & MG+PY+P11    & 1.8669$\pm$0.0006 & 0.0180$\pm$0.0007 & 0.113$\pm$0.004\\ 
+&                     & PW+PY+Z2$^*$ & 1.8655$\pm$0.0006 & 0.0194$\pm$0.0006 & 0.116$\pm$0.004\\ 
+&                     & PW+HW+AUET2 & 1.8653$\pm$0.0005 & 0.0191$\pm$0.0005 & 0.145$\pm$0.004\\ 
+\hline
+\multirow{5}{*}{$D^0$ (soft-lepton tag)} 
+& \multicolumn{2}{l}{Data} & & & \\ 
+\cline{2-6}
+& \multirow{4}{*}{MC} & MG+PY+Z2$^*$ & & \\ 
+&                     & MG+PY+P11 & & \\ 
+&                     & PW+PY+Z2$^*$ & & \\ 
+&                     & PW+HW+AUET2 & & \\ 
+\hline
+\multirow{5}{*}{$D^\pm$} 
+& \multicolumn{2}{l}{Data} & & & \\ 
+\cline{2-6}
+& \multirow{4}{*}{MC} & MG+PY+Z2$^*$ & & \\ 
+&                     & MG+PY+P11 & & \\ 
+&                     & PW+PY+Z2$^*$ & & \\ 
+&                     & PW+HW+AUET2 & & \\ 
+\hline
+\multirow{5}{*}{$J/\psi$} 
+& \multicolumn{2}{l}{Data} & & & \\ 
+\cline{2-6}
+& \multirow{4}{*}{MC} & MG+PY+Z2$^*$ & & \\ 
+&                     & MG+PY+P11 & & \\ 
+&                     & PW+PY+Z2$^*$ & & \\ 
+&                     & PW+HW+AUET2 & & \\ 
+\hline
+\end{tabular}
+\end{table}
+
+The mass fit described above is performed in different \pt and $\eta$
+ranges. Given there is a correlation between the invariant mass resolution and these
+two variables we adopt this technique to measure the different $\pt$ and $\eta$
+production cross sections for the charmed meson candidates.
+The ranges are chosen such that the mean fitted does not deviate from the central value
+quoted in Table~\ref{tab:charmfit} by more than 1$\sigma$.
+
+Figures~\ref{fig:charmptdiff} and~\ref{fig:charmetadiff}
+shows the results obtained for the $\pt$ and $\eta$.
+Different models are compared with the data.
+Overall data tends to agree with the prediction obtained with the \MADGRAPH+\PYTHIA+Z2$^*$ setup.
+After changing the matrix-element generator
+we expect differences in the kinematics of the mesons, in particular in $\eta$.
+The result is not unexpected given \MADGRAPH is a LO generator including up to three partons at matrix-element level,
+and \POWHEG is a NLO generator including up to one extra parton at matrix-element level.
+Data tends to agree better with \MADGRAPH,
+but, if \HERWIG is used instead as the hadronizer, the agreement with \POWHEG improves.
+The variation of the tune for the same matrix-element+parton-shower choice (\MADGRAPH and \PYTHIA)
+induces some differences in the spectra as well, with data being closer to Z2$^*$.
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0Incl3Trk_diffpt}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0lep_diffpt}}\\
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/DpmZO_diffpt}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/JPsi_diffpt}}
+\caption{ 
+Normalized differential production cross section of charmed meson candidates in \ttbar events,
+as function of \pt:
+(a) $D^0$, (b) $D^0$ with soft lepton tag, (c) $D^\pm$ and (d) $J/\psi$.
+The expectations for different \ttbar models are shown as shaded bands
+while the data is shown as marker points.
+Bin-center corrections have been applied to both data and MC
+}
+\label{fig:charmptdiff}
+\end{figure}
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0Incl3Trk_diffeta}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/D0lep_diffeta}}\\
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/DpmZO_diffeta}}
+\subfloat[][]{\includegraphics[width=0.48\textwidth]{img/charm/JPsi_diffeta}}
+\caption{ 
+Normalized differential production cross sections of charmed meson candidates in \ttbar events,
+as function of $\eta$:
+(a) $D^0$, (b) $D^0$ with soft lepton tag, (c) $D^\pm$ and (d) $J/\psi$.
+The expectations for different \ttbar models are shown as shaded bands
+while the data is shown as marker points.
+Bin-center corrections have been applied to both data and MC.
+}
+\label{fig:charmetadiff}
+\end{figure}
+
+Using the inclusive $\pt$ and $\eta$ spectra we unfold different kinematics variables
+of the charmed mesons which are, in first approximation uncorrelated to the reconstructed mass of the candidates,
+given the variables are defined relatively to jet quantities:
+
+\begin{description}
+
+\item[Ratios to jet kinematics] - the ratios of the momentum, transverse momentum or longitudinal momentum of the charmed meson, with respect to the jet's momentum, transverse momentum or longitudinal momentum are quantities which are sensitive to the jet energy scale. We denote these ratios as $R_p$, $R_{p_{\rm T}}$ and $R_{p_{\rm z}}$ respectively;
+
+\item[\ptrel] - the relative momentum of the charmed meson with respect to the jet axis is expected to be less sensitive to the jet energy scale and it is defined as:
+
+\begin{equation}
+p_{\rm T}^{\rm rel}=\vert\vec{p}-\frac{\vec{p}\cdot\vec{p_{\rm jet}}}{\vert\vec{p}_{\rm jet}\vert^2}\vec{p_{\rm jet}}\vert~,
+\label{eq:ptrel}
+\end{equation}
+
+where $\vec{p}$ and $\vec{p}_{\rm jet}$ are correspondingly the charmed meson and the jet transverse momentum.
+
+\item[Ratios to charged component in jet] - the ratios of the transverse momentum or longitudinal momentum of the charmed meson, with respect to the sum of all the jet's charged particle flow candidates' transverse momentum or longitudinal momentum are quantities which are practically insensitive to the jet energy scale. We denote these ratios as $R_{p_{\rm T}}^{\rm ch}$ and $R_{p_{\rm z}}^{\rm ch}$ respectively;
+
+\item[Angular distance to the jet] - the $\Delta R$ distance is practicaly insensitive to the jet energy scale.
+
+\item
+\end{description}
+
+The unfolded distributions are shown in Figures~\ref{fig:d0kinematics},
+\ref{fig:d0lepkinematics}, \ref{fig:dpmkinematics} and \ref{fig:jpsikinematics}
+for the $D^0$, $D^0$ with soft lepton tag, $D^\pm$ and $J/\psi$ candidates.
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_pfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_ptfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_pzfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_ptrel}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_ptchfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_pzchfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/D0Incl3Trk_deltar}}
+\caption{ 
+Normalized differential production cross sections of $D^0$ measson candidates in \ttbar events, as function of:
+(a) $R_p$, (b) $R_{p_{\rm T}}$,  (c) $R_{p_{\rm z}}$, (d) \ptrel, 
+(e) $R^{\rm ch}_{p_{\rm T}}$, (f) $R^{\rm ch}_{p_{\rm z}}$ and (e) $\Delta R$.
+The expectations for different \ttbar models are shown as shaded bands while the data is shown as marker points.
+Bin-center corrections have been applied to both data and MC.
+}
+\label{fig:d0kinematics}
+\end{figure}
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pzfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptrel}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptchfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pzchfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_deltar}}
+\caption{ 
+Similar to Fig.~\ref{fig:d0kinematics} for $D^\pm$.
+}
+\label{fig:d0lepkinematics}
+\end{figure}
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pzfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptrel}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_ptchfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_pzchfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/DpmZ0_deltar}}
+\caption{ 
+Similar to Fig.~\ref{fig:d0kinematics} for $D^\pm$.
+}
+\label{fig:dpmkinematics}
+\end{figure}
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_pfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_ptfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_pzfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_ptrel}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_ptchfrac}}
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_pzchfrac}}\\
+\subfloat[][]{\includegraphics[width=0.32\textwidth]{img/charm/JPsi_deltar}}
+\caption{ 
+Similar to Fig.~\ref{fig:d0kinematics} for $J/\psi$.
+}
+\label{fig:jpsikinematics}
+\end{figure}
+
+%%
+%%
+%%
+\section{Secondary vertex reconstruction: performance in control samples}
+\label{sec:secvertexqcd}
+
+Coming soon.
 
 %
 %
@@ -374,11 +653,12 @@ control the modelling of fragmentation and hadronization of $\cPqb$ jets}
 \section{Measuring the top quark mass using tracks and vertices}
 \label{sec:mtoptkvtx}
 
-
+Coming soon.
 
 \section{Summary}
 \label{sec:summary}
 
+Coming soon.
 
 
 

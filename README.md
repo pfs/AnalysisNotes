@@ -9,7 +9,7 @@ git clone https://github.com/pfs/AnalysisNotes.git
 
 Configure your tdr environment
 
-TDRDIR=~/Documents/cmsnotes
+export TDRDIR=~/Documents/cmsnotes
 
 eval `${TDRDIR}/notes/tdr runtime -sh`
 
