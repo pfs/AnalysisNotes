@@ -90,11 +90,80 @@ pdfkeywords={CMS, top, top mass, tracking}}
 \section{Introduction}
 \label{sec:intro}
 
-Why is this analysis relevant?
+The top quark (\cPqt) mass (\mtop) is a fundamental parameter to
+the Standard Model (SM) of particle physics. It plays a crucial
+role in the calculation radiative corrections to SM observables such
+as e.g. the Higgs boson mass. It can therefore be used to place strong constraints on the
+internal consistency of the SM as well as to search for the evidence of new physics.
+
+The first experimental evidence for the existence of the top quark was obtained
+by the CDF collaboration at the Tevatron in 1994~\cite{Abe:1994xt}.
+One year later, the CDF and D0
+collaborations published the observation of the top quark~\cite{Abe:1995hr,Abachi:1995iq}.
+Unlike other quarks the top
+has a small width which compels it to decay before it can fragment and bound into a hadronic state.
+Due to this unique property direct measurements of \mtop\ (among other properties)
+are possible.
+Since its discovery the mass of this quark has been measured with great accuracy
+by both CDF and D0 experiments
+employing different techniques and using different channels.
+The combination of the different measurements yields
+173.20$\pm$0.87\GeV which has a precision of $\pm$0.5\%~\cite{FERMILAB-TM-XXXX-E}.
+At CMS the top quark mass has also been measured in the
+lepton+jets~\cite{Chatrchyan:2012cz},
+dilepton~\cite{Chatrchyan:2012ea,CMS-PAS-TOP-11-027}
+and full hadronic~\cite{CMS-PAS-TOP-11-017} channels.
+The results obtained in each channel are found to be in agreement with
+each other and with the current world average. After the combination of
+the different measurements, using a Best Linear Unbiased Method
+technique~\cite{CMS-PAS-TOP-11-018}, CMS measures
+\mtop$=173.4\pm0.4_{\rm stat}\pm 0.9_{\rm syst}$.
+The result is in good agreement with the Tevatron result
+and has attained a similar level of precision.
+The dominant sources of uncertainty are observed to be
+related to jet energy scale and resolution and modeling
+(underlying event and color reconnection~\cite{Skands:2007zg}).
+In order to understand further the true nature of \mtop,
+one needs to attain a considerable better uncertainty which may be achieved
+by improving the calibration of the detector (namely jets)
+and by constraining some of the simulation unknowns using control samples
+or dedicated measurements.
+Ultimately by using complementary methods which show
+different sensitivity to different systematic sources
+one can expect to attain a more precise final combination of \mtop.
+
+
+In this manuscript we explore a simple method which attempts to rely minimally on the knowledge of the jet energy scale.
+We exploit the kinematics of the top quark decay,
+namely of the \cPqb-hadron generated after the hadronization of the \cPqb-quark,
+and the charged lepton after the decay of the $\PW$ boson.
+The apparent lifetime of the \cPqb-hadron observed in the laboratory depends
+on its original boost which has a dependency on the mass of the particle which generated it originally.
+The measurement of the lifetime can be achieved by reconstructing the \cPqb-hadron
+as a secondary vertex inside a jet and by measuring the travel time (or length) with respect to the primary vertex of the event.
+Figure~\ref{fig:secvtx} displays pictorially this method which has been originally
+explored by the CDF collaboration~\cite{Hill:2005zy,Aaltonen:2009hd}.
+A preliminary feasibility study of this method at CMS is documented in~\cite{CMS_AN_2012-360}
+using the lepton+jets channel.
+In order to maximize the statistics in data in this analysis both the dilepton ($\ell\ell'$) and lepton+jets ($\ell$+jets) channels,
+where $\ell=e,\mu$, are studied.
+
+\begin{figure}[hbtp]\begin{center}
+\includegraphics[width=0.6\textwidth]{img/displacedVtx}
+\caption{Final state products of a $t\rightarrow Wb$ decay
+with $W\rightarrow \ell\nu$.
+Tracks are represented by arrows and the circles mark the primary and secondary vertices.
+The \lxy\ and transverse impact parameter ($d_0$) distances which characterize the secondary vertex are
+signaled by dashed lines.}
+\label{fig:secvtx}
+\end{center}
+\end{figure}
+
 
 %
 %
 %
+\clearpage
 \section{Datasets and selection}
 \label{sec:datasetsandselection}
 
@@ -365,6 +434,7 @@ The Muon and EGamma POG recommended values are used~\cite{twiki:EGeff,twiki:MUef
 %%
 %%
 %%
+\clearpage
 \section{Background control}
 \label{sec:bckgctrl}
 
@@ -373,6 +443,7 @@ Coming soon.
 %%
 %%
 %%
+\clearpage
 \section{Event yields and control distributions}
 \label{sec:evyields}
 
@@ -381,6 +452,7 @@ Coming soon.
 %%
 %%
 %%
+\clearpage
 \section{Truth and Lies about Beauty and Charm: using top quark pair events as a spectroscope to
 control the modelling of fragmentation and hadronization of $\cPqb$ jets}
 \label{sec:truthlies}
@@ -646,19 +718,213 @@ Similar to Fig.~\ref{fig:d0kinematics} for $J/\psi$.
 %%
 %%
 %%
+\clearpage
 \section{Secondary vertex reconstruction: performance in control samples}
 \label{sec:secvertexqcd}
 
-Coming soon.
+In order to test the performance of the algorithm used to reconstruct secondary vertices
+we use a control sample which is orthogonal to the one used in our measurement.
+Dijet events, where the tagging object is a jet with $\pt>30\GeV$ which is required to contain
+a muon and to pass the CSV loose working point are selected in data and compared to the 
+expections from simulation. Dedicated $b$-tag triggers are used to collect this sample,
+as described in Sec.~\ref{sec:datasetsandselection}.
+
+For each event we probe the second jet in the event
+if it contains a reconstructed secondary vertex 
+and if $\Delta\phi(j_1,j_2)>2.7$ and $0.7<p_{\rm T}^1/p_{\rm T}^2<1.3$
+(recoil condition).
+The distribution of the secondary vertex mass (SecVtx mass) of the probe jet is used to estimate its flavor composition.
+The secondary vertex mass has distinctive characteristics for $\cPqb$, $\cPqc$ and udsg jets
+which can be used to fit to the distribution observed in data.
+For this purposed we use the probability distribution functions of the SecVtx mass as predicted in simulation.
+An extended, binned, likelihood is then maximized in order do estimate the flavor composition.
+In the fit we float freely the number light flavoured jets (\ie udsg) and the total number of heavy-flavoured jets (\ie $\cPqb$+$\cPqc$).
+The relative ratio between $\cPqb$- and $\cPqc$-jets is assumed from simulation.
+We have also tested that relaxing this assumption does not yield significantly different results.
+The heavy flavour fit is made in different \pt ranges of the probe jet.
+
+Figure~\ref{fig:svtxmass} shows the distribution of the SecVtx mass.
+Besides showing the result in the inclusive sample we split furthermore according to the track multiplcity of the secondary vertex.
+The contamination from light jets in the sample for which at least 3 tracks are required is significantly reduced.
+Furthermore, if we use the fractions fit to the secondary vertex mass from the inclusive sample
+we observe a discrepancy in the description of the track multiplicity 
+as summarized in Fig.~\ref{fig:svtx_trkmult} and Fig.~\ref{fig:svtx_trkmult_momenta}.
+While the median number of tracks is well reproduced, the same is not true for the width of the distribution,
+data yields a steeper distribution than the one predicted by simulation.
+This effect is also observed in the \ttbar sample.
+In order to understand if this effect can be calibrated away by combining
+exclusive \mtop measurements which make use of secondary vertices with different track multiplicities
+we explore further the characteristics of the secondary vertices in the exclusive track multiplicity categories.
+
+\begin{landscape}
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.8\textwidth]{img/svtx/Multijets__svx}}
+\subfloat[][]{\includegraphics[width=0.8\textwidth]{img/svtx/Multijets_ntrk2_svx}}\\
+\subfloat[][]{\includegraphics[width=0.8\textwidth]{img/svtx/Multijets_ntrk3_svx}}
+\subfloat[][]{\includegraphics[width=0.8\textwidth]{img/svtx/Multijets_ntrk4_svx}}
+\caption{ 
+Distribution of the mass of the secondary vertex and expected jet flavour composition after a template fit.
+Different jet \pt categories are shown.
+The captions show the relative composition of the sample, the common heavy flavour scale factor.
+The $\chi^2$ and corresponding probability between data and the result of the fit, are quoted in the captions.
+The fits are perfomed to (a) the inclusive secondary vertex spectrum  and to secondary vertices with
+(b) 2 tracks, (c) 3 tracks or (d) at least 4 tracks.
+}
+\label{fig:svtxmass}
+\end{figure}
+\end{landscape}
+
+\begin{figure}[htp] 
+\centering
+\includegraphics[width=0.9\textwidth]{img/svtx/Multijets__svx_ntracks}
+\caption{ 
+Distribution of the track multiplcity in secondary vertices. The fraction of each jet flavour reflects the result of the fit to the secondary
+vertex mass distribution.}
+\label{fig:svtx_trkmult}
+\end{figure}
+
+
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.49\textwidth]{img/svtx/Multijets__svx_1_ntracks}}
+\subfloat[][]{\includegraphics[width=0.49\textwidth]{img/svtx/Multijets__svx_2_ntracks}}
+\caption{ 
+The (a) median and (b) difference between the 75\% and 25\% quantiles of the track multiplicity distributions for the secondary vertices
+are compared between data and the MC (using the fitted jet flavour fractions).
+The bottom panels show the data to MC ratio.}
+\label{fig:svtx_trkmult_momenta}
+\end{figure}
+
+The distributions chosen are the following:
+
+\begin{description}
+\item[$L_{\rm xy}$] - the transverse decay length of the secondary vertex, with respect to the primary vertex of the event;
+\item[$L_{\rm xy}$ significance] - the ratio between the $L_{\rm xy}$ and its uncertainty;
+\item[$\Delta R({\rm SecVtx,jet})$] - the angular distance between the secondary vertex flight direction and the jet axis;
+\item[$p_{\rm T}({\rm SecVtx})/\sum p_{\rm T}^{\rm ch}$] - the ratio of the secondary vertex \pt with respect to the scalar sum of the \pt of the charged particles constituting a jet.
+\end{description}
+
+For each one, we compute the mean and the difference between the 75\% and 25\% quantiles of both the observed distribution in data
+and the expected distribution from simulation. 
+The expected distribution is composed using the jet-flavour fractions fit to the SecVtx mass distribution, explained above.
+Figures~\ref{fig:svtx_trk2},~\ref{fig:svtx_trk3} and~\ref{fig:svtx_trk4}
+show the results obtained for secondary vertices with two, three or at least four associated tracks.
+We don't observe significant discrepancies in the chosen variables, 
+for the different categories.
+The most statistically significant differences found are 
+the distribution of the \pt fraction with respect to the  \pt of the charged constituents of the jet
+in secondary vertices with two tracks (wider distribution in data)
+and in the $L_{\rm xy}$ and $\Delta R$  distributions for 
+jets with $\pt>100\GeV$ in secondary vertices with three tracks.
+In the first case the diffences seems to come mostly from the quality of the distributions for light jets (udsg),
+while in the second case seems related to small statistics in the simulation at high \pt.
+Given the general good agreement between data and expectations
+in the different track multiplicity categories
+we can conclude that there is no severe mismodelling of the performance of the
+secondary vertex reconstruction for \cPqb jets.
+Thus, the difference in the track multiplicity observed in the inclusive sample can,
+be calibrated away with a combination of exclusive measurements.
+
+\begin{landscape}
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_1_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_1_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_1_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_1_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_2_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_2_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_2_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk2_svx_2_chfrac}}
+\caption{ 
+The top plots show different distributions for the properties of secondary vertices with two tracks,
+the center plots show the median of the distributions and the
+the bottom plots the difference between the 75\% and 25\% quantiles.
+(a,e,i) $L_{\rm xy}$,
+(b,f,j) $L_{\rm xy}/\sigma_{L_{\rm xy}}$, 
+(c,g,k) $\Delta R$, and 
+(d,h,l) the ratio of the secondary vertex \pt with respect to the scalar sum of the \pt of the charged constituents of the jet.
+The data is compared to the MC (using the fitted jet flavour fractions).
+The bottom panels show the data to MC ratio.}
+\label{fig:svtx_trk2}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_1_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_1_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_1_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_1_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_2_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_2_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_2_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk3_svx_2_chfrac}}
+\caption{ 
+Similar to Fig.~\ref{fig:svtx_trk2} but for secondary vertices with three tracks.}
+\label{fig:svtx_trk3}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[htp] 
+\centering
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_1_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_1_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_1_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_1_chfrac}}\\
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_2_lxy}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_2_lxysig}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_2_dr}}
+\subfloat[][]{\includegraphics[width=0.34\textwidth]{img/svtx/Multijets_ntrk4_svx_2_chfrac}}
+\caption{ 
+Similar to Fig.~\ref{fig:svtx_trk2} but for secondary vertices with at least four tracks.}
+\label{fig:svtx_trk4}
+\end{figure}
+\end{landscape}
+
 
 %
 %
 %
+\clearpage
 \section{Measuring the top quark mass using tracks and vertices}
 \label{sec:mtoptkvtx}
 
-Coming soon.
+\subsection{Strategy}
+\label{subsec:strategy}
 
+\subsection{Signal, background and fitting models}
+\label{subsec:models}
+
+\subsection{Calibration}
+\label{subsec:calibration}
+
+\subsection{Systematic uncertainties}
+\label{subsec:syst}
+
+\subsection{Results}
+\label{subsec:results}
+
+
+%
+%
+%
+\clearpage
 \section{Summary}
 \label{sec:summary}
 
